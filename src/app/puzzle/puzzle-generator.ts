@@ -76,7 +76,8 @@ export abstract class PuzzleGenerator {
             for (var r = 0; r < rotations; r++) {
               pentominoCopy.rotate();
             }
-
+            pentominoCopy.xOffset = -999;
+            pentominoCopy.yOffset = -999;
         grid.playerPentominoes.push(pentominoCopy);
 
       });

@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
+import {DndModule} from 'ngx-drag-drop';
 
 
 @NgModule({
@@ -26,9 +26,7 @@ import { CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    DragDropModule,
-    CdkDropList,
-    CdkDrag
+    DndModule
   ],
   exports: [
     PuzzleComponent,

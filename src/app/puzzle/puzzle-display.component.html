@@ -1,7 +1,7 @@
 <div class="center">
-    <mat-grid-list [cols]="grid.width" style="width:491px" rowHeight="1:1" gutterSize="2px">
+    <mat-grid-list [cols]="grid.width" style="width:491px" rowHeight="1:1" gutterSize="2px" *ngIf="switch || !switch">
         @for (tile of tiles; track tile) {
-            <mat-grid-tile cdkDropList (cdkDragEntered)="dragEntered($event, tile.x, tile.y)"
+            <mat-grid-tile dndDropzone dndEffectAllowed="all" (dndDrop)="onDrop($event, tile.x, tile.y)" (dndDragover)="onDragover($event, tile.x, tile.y)"
             [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
         }
     </mat-grid-list>

@@ -61,11 +61,13 @@ export abstract class PentominoLibrary {
         case 'w':
           return '#82D173';
         case 'x':
-          return '#EABDA8';
+          return '#FFD166';
         case 'y':
           return '#B796AC';
         case 'z':
           return '#EFC88B';
+        case "~":
+          return "#FFFDD0"
         default:
           return 'white';
       }

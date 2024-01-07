@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Grid } from './grid';
 import { PuzzleGenerator } from './puzzle-generator';
 import { GridToText } from './GridToText';
@@ -24,6 +24,10 @@ export class PuzzleComponent implements OnInit {
   public generated: boolean = false;
   public solutionVisible = false;
   public puzzle!: Grid;
+  public currentlyDraggingPentomino: Pentomino | undefined;
+  public switch = false;
+
+  constructor(private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
     this.generatePuzzle();
@@ -33,13 +37,11 @@ export class PuzzleComponent implements OnInit {
     return GridToText.getViewOfPuzzle(this.puzzle, this.solutionVisible);
   }
 
-  public get dropListGroup() :string[] {
+  public get dropListGroup(): string[] {
     var dropLists = new Array<string>();
 
-    for (var x = 0; x < this.puzzle.width; x++)
-    {
-      for (var y = 0; y < this.puzzle.height; y++)
-      {
+    for (var x = 0; x < this.puzzle.width; x++) {
+      for (var y = 0; y < this.puzzle.height; y++) {
         dropLists.push("dropListId" + x + y);
       }
     }
@@ -69,6 +71,12 @@ export class PuzzleComponent implements OnInit {
     this.solutionVisible = !this.solutionVisible;
   }
 
+  public resetPuzzle() {
+    this.solutionVisible = false;
+    this.puzzle.playerPentominoes.forEach(p => p.xOffset = -999);
+    this.cdr.detectChanges();
+  }
+
   dropPentomino(event: CdkDragDrop<string[]>) {
 
     console.log(event.dropPoint)
@@ -77,5 +85,22 @@ export class PuzzleComponent implements OnInit {
 
   pentominoColor(pentomino: Pentomino) {
     return PentominoLibrary.getColorFromText(pentomino.name);
+  }
+  
+  onDragStart($event: DragEvent, pentomino: Pentomino) {
+    this.currentlyDraggingPentomino = pentomino;
+  }
+
+  onDragCanceled(){
+    this.currentlyDraggingPentomino = undefined;
+  }
+  
+  pentominoClicked(pentomino: Pentomino) {
+    pentomino.rotate();
+  }
+
+  resetSwitch()
+  {
+    this.switch = !this.switch;
   }
 }

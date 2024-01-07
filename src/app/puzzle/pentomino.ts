@@ -23,16 +23,17 @@ export class Pentomino {
   }
 
   public get height(): number {
-    var maxY = Math.max(...this.pentominoBlocks.map(p => p.y));
-    var minY = Math.min(...this.pentominoBlocks.map(p => p.y));
-    return maxY - minY + 1;
+    return this.maxY - this.minY + 1;
   }
 
   public get width(): number {
-    var maxX = Math.max(...this.pentominoBlocks.map(p => p.x));
-    var minX = Math.min(...this.pentominoBlocks.map(p => p.x));
-    return maxX - minX + 1;
+    return this.maxX - this.minX + 1;
   }
+
+  public get minX():number {return Math.min(...this.pentominoBlocks.map(p => p.x));}
+  public get maxX():number {return Math.max(...this.pentominoBlocks.map(p => p.x));}
+  public get minY():number {return Math.min(...this.pentominoBlocks.map(p => p.y));}
+  public get maxY():number {return Math.max(...this.pentominoBlocks.map(p => p.y));}
 
   public rotate() {
     var newLocations = new Array<GridLocation>();

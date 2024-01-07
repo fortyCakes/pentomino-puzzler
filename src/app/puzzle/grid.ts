@@ -15,6 +15,7 @@ export class Grid {
   nodes: string[][];
   pentominoes: Pentomino[];
   playerPentominoes: Pentomino[];
+  ghostPentomino: Pentomino | undefined;
   stars: GridLocation[];
   points: GridLocation[];
   blocks: GridLocation[];

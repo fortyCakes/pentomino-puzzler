@@ -10,7 +10,8 @@ export interface Tile {
 
 @Component({
   selector: 'pentomino-display',
-  templateUrl: './pentomino-display.component.html'
+  templateUrl: './pentomino-display.component.html',
+  styleUrl: './pentomino-display.component.css'
 })
 export class PentominoDisplayComponent implements OnChanges {
 
@@ -18,22 +19,27 @@ export class PentominoDisplayComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
 
+    this.renewTiles();
+  }
+
+  public tiles: Tile[] = new Array<Tile>();
+
+  private renewTiles() {
     var newtiles = new Array<Tile>();
 
     this.pentomino.pentominoBlocks.forEach(pb => {
-      console.log(pb.x + ", " + pb.y)
-    })
+    });
 
-    for (var y = 0; y < 5; y++) {
-      for (var x = 0; x < 5; x++) {
+    for (var y = this.pentomino.minY; y < this.pentomino.maxY+1; y++) {
+      for (var x = this.pentomino.minX; x < this.pentomino.maxX+1; x++) {
 
         var isInShape = this.pentomino.containsLocation(new GridLocation(x, y), false);
-        console.log(this.pentomino.name + ": (" + x + ", " + y + "), " + isInShape)
+
         if (isInShape) {
           newtiles.push({ color: PentominoLibrary.getColorFromText(this.pentomino.name), text: "" });
         }
         else {
-          newtiles.push({ color: "#00000000", text: "" })
+          newtiles.push({ color: "#00000000", text: "" });
         }
 
       }
@@ -42,6 +48,10 @@ export class PentominoDisplayComponent implements OnChanges {
     this.tiles = newtiles;
   }
 
-  public tiles: Tile[] = new Array<Tile>();
-  
+  onClick() {
+    this.pentomino.rotate();
+    this.pentomino.xOffset = -999;
+    this.renewTiles();
+  }
+
 }

@@ -1,10 +1,12 @@
 <mat-grid-list cols="2" style="width:100%" rowHeight="100px">
     <mat-grid-tile>
         <button mat-raised-button color="primary" (click)="generatePuzzle()">Generate New Puzzle</button>&nbsp;
-        <button mat-raised-button (click)="toggleSolution()">Show Solution</button>
+        <button mat-raised-button (click)="toggleSolution()">Show Solution</button>&nbsp;
+        <button mat-raised-button (click)="resetPuzzle()">Reset Puzzle</button>
+
     </mat-grid-tile>
     <mat-grid-tile rowspan="8">
-        <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible"></puzzle-display>
+        <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible" [currentlyDragging]="currentlyDraggingPentomino" [switch]="switch"></puzzle-display>
     </mat-grid-tile>
         
     <mat-grid-tile rowspan="3">
@@ -51,10 +53,9 @@
 <div style="padding-left: 20px;">
     <div class="example-list">
         @for (pentomino of puzzle.playerPentominoes; track pentomino) {
-            <div class="example-box">
-                <pentomino-display [pentomino]="pentomino"></pentomino-display>
-                <div *cdkDragPreview [style.color]="pentominoColor(pentomino)">★</div>
-            </div>
+            
+                <pentomino-display [pentomino]="pentomino" [dndDraggable]="pentomino" dndEffectAllowed="all" (dndDrag)="onDragStart($event, pentomino)" (dndMoved)="resetSwitch()"  ></pentomino-display>
+                
         }
     </div>
 </div>
