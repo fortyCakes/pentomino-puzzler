@@ -35,37 +35,37 @@ export abstract class PentominoLibrary {
     public static getColorFromText(text: string): string {
       switch(text){
         case '.':
-          return 'lightblue';
+          return '#303060';
         case 'X':
-          return 'firebrick';
+          return '#B02E0C  ';
         case '*':
-          return 'deepskyblue';
+          return '#449DD1';
         case '1':
-          return 'dodgerblue';
+          return '#7209B7';
         case 'f':
-          return 'darkslategrey';
+          return '#DB995A';
         case 'i':
-          return 'darkmagenta';
+          return '#D6D4A0';
         case 'l':
-          return 'forestgreen';
+          return '#EABDA8 ';
         case 'p':
-          return 'mediumpurple';
+          return '#EFBDEB';
         case 't':
-          return 'midnightblue';
+          return '#E7E6F7';
         case 'u':
-          return 'seagreen';
+          return '#C2EABD';
         case 'n':
-          return 'slategrey';
+          return '#CE84AD';
         case 'v':
           return 'tomato';
         case 'w':
-          return 'yellowgreen';
+          return '#82D173';
         case 'x':
-          return 'goldenrod';
+          return '#EABDA8';
         case 'y':
-          return 'pink';
+          return '#B796AC';
         case 'z':
-          return 'chocolate';
+          return '#EFC88B';
         default:
           return 'white';
       }

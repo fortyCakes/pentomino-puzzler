@@ -10,8 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class PuzzleComponent implements OnInit {
 
-  width = 12;
-  height = 12;
+  public width = 12;
+  public height = 12;
+  public numberOfPieces = 5;
+  public numberOfStars = 5;
+  public numberOfPrizes = 5;
+  public numberOfBlocks = 20;
 
   public generated: boolean = false;
   public solutionVisible = false;
@@ -27,16 +31,17 @@ export class PuzzleComponent implements OnInit {
 
   public generatePuzzle() {
 
+
     this.puzzle = new Grid(this.width, this.height);
-    this.generated = PuzzleGenerator.generate(this.puzzle, 5, 5, 10, 20, true);
+    this.generated = PuzzleGenerator.generate(this.puzzle, this.numberOfPieces, this.numberOfStars, this.numberOfPrizes, this.numberOfBlocks, true);
 
     if (!this.generated) {
       this.puzzle = new Grid(this.width, this.height);
-      this.generated = PuzzleGenerator.generate(this.puzzle, 5, 5, 10, 20, true);
+      this.generated = PuzzleGenerator.generate(this.puzzle, this.numberOfPieces, this.numberOfStars, this.numberOfPrizes, this.numberOfBlocks, true);
     }
     if (!this.generated) {
       this.puzzle = new Grid(this.width, this.height);
-      this.generated = PuzzleGenerator.generate(this.puzzle, 5, 5, 10, 20, true);
+      this.generated = PuzzleGenerator.generate(this.puzzle, this.numberOfPieces, this.numberOfStars, this.numberOfPrizes, this.numberOfBlocks, true);
     }
 
     this.solutionVisible = false;

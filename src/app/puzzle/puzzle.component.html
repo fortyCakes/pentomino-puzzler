@@ -1,9 +1,50 @@
-&nbsp;
-<p>
-    <div style="align:center">
+<mat-grid-list cols="2" style="width:100%" rowHeight="100px">
+    <mat-grid-tile>
+        <button mat-raised-button color="primary" (click)="generatePuzzle()">Generate New Puzzle</button>&nbsp;
+        <button mat-raised-button (click)="toggleSolution()">Show Solution</button>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="8">
         <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible"></puzzle-display>
-    </div>
-<p></p>
-<button mat-raised-button color="primary" (click)="generatePuzzle()">Generate New Puzzle</button>&nbsp;
-<button mat-raised-button (click)="toggleSolution()">Show Solution</button>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3">
+        <mat-list role="list">
+            <mat-list-item role="listitem">Rules:</mat-list-item>
+            <mat-list-item>Place all of the pieces into the grid.</mat-list-item>
+            <mat-list-item>Each piece must touch at least one other piece.</mat-list-item>
+            <mat-list-item>Pieces can't be placed in spaces with a red X.</mat-list-item>
+            <mat-list-item>Pieces must cover all of the spaces with a blue *.</mat-list-item>
+            <mat-list-item>You score one bonus point for each purple 1 you cover.</mat-list-item>
+        </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="2">
+        <mat-grid-list cols="3" style="width:100%" rowHeight="100px">
+            <mat-grid-tile>
+            <mat-form-field>
+            <mat-label>Width</mat-label>
+            <input matInput [(ngModel)]="width" />
+          </mat-form-field></mat-grid-tile><mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Height</mat-label>
+            <input matInput [(ngModel)]="height" />
+        </mat-form-field></mat-grid-tile><mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Number of pieces</mat-label>
+            <input matInput [(ngModel)]="numberOfPieces" />
+        </mat-form-field></mat-grid-tile><mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Number of stars</mat-label>
+            <input matInput [(ngModel)]="numberOfStars" />
+        </mat-form-field></mat-grid-tile><mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Number of blocks</mat-label>
+            <input matInput [(ngModel)]="numberOfBlocks" />
+        </mat-form-field></mat-grid-tile><mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Number of points</mat-label>
+            <input matInput [(ngModel)]="numberOfPrizes" />
+        </mat-form-field></mat-grid-tile>
+    </mat-grid-list>
+    </mat-grid-tile>
+</mat-grid-list>
+
 

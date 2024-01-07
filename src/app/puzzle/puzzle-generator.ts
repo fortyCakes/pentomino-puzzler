@@ -26,14 +26,9 @@ export abstract class PuzzleGenerator {
             var yOffset: number;
         
             let firstPlacement = i != 0;
-
-            if (!firstPlacement) {
-              xOffset = Math.floor(Math.random() * grid.width);
-              yOffset = Math.floor(Math.random() * grid.height);
-            } else {
-              xOffset = Math.floor(Math.random() * grid.width / 3 + grid.width / 3);
-              yOffset = Math.floor(Math.random() * grid.height / 3 + grid.height / 3);
-            }
+         
+            xOffset = Math.floor(Math.random() * grid.width);
+            yOffset = Math.floor(Math.random() * grid.height);
         
             placed = 
               grid.placePentomino(pentomino, xOffset, yOffset, true, firstPlacement);

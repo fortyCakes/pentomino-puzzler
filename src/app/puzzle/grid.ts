@@ -46,8 +46,8 @@ export class Grid {
     checkIsAdjacent: boolean = false
   ): boolean {
     if (xOffset < 0 || yOffset < 0) return false;
-    if (xOffset + pentomino.width > this.width) return false;
-    if (yOffset + pentomino.height > this.height) return false;
+    if (xOffset + pentomino.width >= this.width -1) return false;
+    if (yOffset + pentomino.height >= this.height -1) return false;
 
     pentomino.xOffset = xOffset;
     pentomino.yOffset = yOffset;

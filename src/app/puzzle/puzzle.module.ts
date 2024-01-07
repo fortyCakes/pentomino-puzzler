@@ -5,6 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { PuzzleDisplayComponent } from './puzzle-display.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { PentominoDisplayComponent } from './pentomino-display.component';
+import {MatList, MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { PentominoDisplayComponent } from './pentomino-display.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule
   ],
   exports: [
     PuzzleComponent,
