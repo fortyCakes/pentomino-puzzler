@@ -46,7 +46,7 @@ export abstract class GridToText {
     if (showSolution) {
       var pentomino = grid.pentominoes.find(p => p.containsLocation(loc))
       if (pentomino != undefined) {
-        return "<b>" + pentomino.name + "</b>";
+        return pentomino.name;
       }
     }
 

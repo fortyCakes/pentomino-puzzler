@@ -1,17 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PuzzleComponent } from './puzzle.component';
+import { MatButtonModule } from '@angular/material/button';
+import { PuzzleDisplayComponent } from './puzzle-display.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
   declarations: [
-    PuzzleComponent
+    PuzzleComponent,
+    PuzzleDisplayComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatGridListModule
   ],
   exports: [
-    PuzzleComponent
+    PuzzleComponent,
+    PuzzleDisplayComponent
   ]
 })
 export class PuzzleModule { }

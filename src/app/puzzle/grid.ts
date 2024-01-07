@@ -72,4 +72,29 @@ export class Grid {
 
     return true;
   }
+
+  public getTextAt(x: number, y: number, showSolution: boolean) {
+    var loc = new GridLocation(x, y);
+  
+      if (showSolution) {
+        var pentomino = this.pentominoes.find(p => p.containsLocation(loc))
+        if (pentomino != undefined) {
+          return pentomino.name;
+        }
+      }
+  
+      if (this.stars.some(s => s.x == loc.x && s.y == loc.y)) {
+        return "*";
+      }
+      if (this.points.some(s => s.x == loc.x && s.y == loc.y)) {
+        return "1";
+      }
+      if (this.blocks.some(s => s.x == loc.x && s.y == loc.y)) {
+        return "X";
+      }
+  
+      return ".";
+  }
 }
+
+

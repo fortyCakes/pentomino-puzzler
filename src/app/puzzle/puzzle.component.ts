@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Grid } from './grid';
 import { PuzzleGenerator } from './puzzle-generator';
 import { GridToText } from './GridToText';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-puzzle',

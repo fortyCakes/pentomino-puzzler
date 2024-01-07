@@ -1,0 +1,8 @@
+<mat-grid-list [cols]="grid.width" style="width:491px" rowHeight="1:1" gutterSize="2px">
+    @for (tile of tiles; track tile) {
+        <mat-grid-tile
+          [colspan]="1"
+          [rowspan]="1"
+          [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
+      }
+</mat-grid-list>
