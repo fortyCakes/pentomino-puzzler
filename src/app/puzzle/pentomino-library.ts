@@ -31,4 +31,43 @@ export abstract class PentominoLibrary {
     public static x: Pentomino = new Pentomino('x', [0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1]);
     public static y: Pentomino = new Pentomino('y', [1, 1, 1, 1, 0, 0, 1]);
     public static z: Pentomino = new Pentomino('z', [1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1]);
+
+    public static getColorFromText(text: string): string {
+      switch(text){
+        case '.':
+          return 'lightblue';
+        case 'X':
+          return 'firebrick';
+        case '*':
+          return 'deepskyblue';
+        case '1':
+          return 'dodgerblue';
+        case 'f':
+          return 'darkslategrey';
+        case 'i':
+          return 'darkmagenta';
+        case 'l':
+          return 'forestgreen';
+        case 'p':
+          return 'mediumpurple';
+        case 't':
+          return 'midnightblue';
+        case 'u':
+          return 'seagreen';
+        case 'n':
+          return 'slategrey';
+        case 'v':
+          return 'tomato';
+        case 'w':
+          return 'yellowgreen';
+        case 'x':
+          return 'goldenrod';
+        case 'y':
+          return 'pink';
+        case 'z':
+          return 'chocolate';
+        default:
+          return 'white';
+      }
+    }
   }

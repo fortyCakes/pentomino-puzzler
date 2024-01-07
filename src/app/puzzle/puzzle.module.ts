@@ -4,12 +4,14 @@ import { PuzzleComponent } from './puzzle.component';
 import { MatButtonModule } from '@angular/material/button';
 import { PuzzleDisplayComponent } from './puzzle-display.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { PentominoDisplayComponent } from './pentomino-display.component';
 
 
 @NgModule({
   declarations: [
     PuzzleComponent,
-    PuzzleDisplayComponent
+    PuzzleDisplayComponent,
+    PentominoDisplayComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
   ],
   exports: [
     PuzzleComponent,
-    PuzzleDisplayComponent
+    PuzzleDisplayComponent,
+    PentominoDisplayComponent
   ]
 })
 export class PuzzleModule { }

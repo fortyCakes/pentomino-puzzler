@@ -44,8 +44,18 @@ export class Pentomino {
     this.pentominoBlocks = newLocations;
   }
 
-  containsLocation(loc: GridLocation): boolean {
-    return this.pentominoBlocks.some(pb => pb.x + this.xOffset == loc.x && pb.y + this.yOffset == loc.y);
+  containsLocation(loc: GridLocation, useOffset = true): boolean {
+    if (useOffset)
+    {
+      return this.pentominoBlocks.some(pb => pb.x + this.xOffset == loc.x && pb.y + this.yOffset == loc.y);
+    }
+    else {
+      return this.pentominoBlocks.some(pb => pb.x== loc.x && pb.y == loc.y);
+    }
+  }
+
+  containsTileIndex(tileIndex: number) : boolean {
+    return this.containsLocation(new GridLocation(tileIndex - 5*Math.floor(tileIndex/5), Math.floor(tileIndex/5)));
   }
 
   overlapsWith(pentominoOther: Pentomino, withXOffset = 0, withYOffset = 0): boolean {

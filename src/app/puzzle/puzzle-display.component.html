@@ -1,8 +1,17 @@
-<mat-grid-list [cols]="grid.width" style="width:491px" rowHeight="1:1" gutterSize="2px">
-    @for (tile of tiles; track tile) {
-        <mat-grid-tile
-          [colspan]="1"
-          [rowspan]="1"
-          [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
-      }
-</mat-grid-list>
+<div class="center">
+    <mat-grid-list [cols]="grid.width" style="width:491px" rowHeight="1:1" gutterSize="2px">
+        @for (tile of tiles; track tile) {
+            <mat-grid-tile
+            [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
+        }
+    </mat-grid-list>
+</div>
+<div class="center">
+    <mat-grid-list cols="5" style="width: 550px" rowHeight="1:1" gutterSize="10px">
+        @for (pentomino of pentominoes; track pentomino) {
+            <mat-grid-tile>
+                <pentomino-display [pentomino]="pentomino"></pentomino-display>
+            </mat-grid-tile>
+        }
+    </mat-grid-list>
+</div>

@@ -1,7 +1,8 @@
 &nbsp;
-<p><puzzle-display [grid]="puzzle" [showSolution]="solutionVisible"></puzzle-display></p>
-
-<p><span style="font:24px consolas; white-space:pre" [innerHTML]="puzzleText"></span></p>
+<p>
+    <div style="align:center">
+        <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible"></puzzle-display>
+    </div>
 <p></p>
 <button mat-raised-button color="primary" (click)="generatePuzzle()">Generate New Puzzle</button>&nbsp;
 <button mat-raised-button (click)="toggleSolution()">Show Solution</button>
