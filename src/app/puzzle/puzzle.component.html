@@ -6,6 +6,7 @@
     <mat-grid-tile rowspan="8">
         <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible"></puzzle-display>
     </mat-grid-tile>
+        
     <mat-grid-tile rowspan="3">
         <mat-list role="list">
             <mat-list-item role="listitem">Rules:</mat-list-item>
@@ -46,5 +47,16 @@
     </mat-grid-list>
     </mat-grid-tile>
 </mat-grid-list>
+
+<div style="padding-left: 20px;">
+    <div class="example-list">
+        @for (pentomino of puzzle.playerPentominoes; track pentomino) {
+            <div class="example-box">
+                <pentomino-display [pentomino]="pentomino"></pentomino-display>
+                <div *cdkDragPreview [style.color]="pentominoColor(pentomino)">★</div>
+            </div>
+        }
+    </div>
+</div>
 
 

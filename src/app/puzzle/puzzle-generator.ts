@@ -17,7 +17,7 @@ export abstract class PuzzleGenerator {
             var pentominoIndex = Math.floor(Math.random() * unusedPentominoes.length);
             var pentomino = unusedPentominoes[pentominoIndex];
 
-            var rotations = Math.floor(Math.random() * 3);
+            var rotations = Math.floor(Math.random() * 4);
             for (var r = 0; r < rotations; r++) {
               pentomino.rotate();
             }
@@ -69,6 +69,17 @@ export abstract class PuzzleGenerator {
             }
           }
       }
+
+      grid.pentominoes.forEach(val => {
+        var pentominoCopy = PentominoLibrary.getOneOfEach().find(f => f.name == val.name) as Pentomino;
+        var rotations = Math.floor(Math.random() * 4);
+            for (var r = 0; r < rotations; r++) {
+              pentominoCopy.rotate();
+            }
+
+        grid.playerPentominoes.push(pentominoCopy);
+
+      });
 
       return true;
     }

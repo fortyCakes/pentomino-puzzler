@@ -14,6 +14,7 @@ export class GridLocation {
 export class Grid {
   nodes: string[][];
   pentominoes: Pentomino[];
+  playerPentominoes: Pentomino[];
   stars: GridLocation[];
   points: GridLocation[];
   blocks: GridLocation[];
@@ -29,6 +30,7 @@ export class Grid {
       .map(() => new Array(height).fill('.'));
 
     this.pentominoes = new Array<Pentomino>();
+    this.playerPentominoes = new Array<Pentomino>();
     this.stars = new Array<GridLocation>();
     this.points = new Array<GridLocation>();
     this.blocks = new Array<GridLocation>();
