@@ -40,6 +40,20 @@ export class Grid {
   public toString = (): string => {
     return "Puzzle Grid, size " + this.width + "x" + this.height + "."
   };
+  
+
+  public copy = ():Grid=>{
+    var copyGrid = new Grid(this.width, this.height);
+    copyGrid.nodes = this.nodes;
+    copyGrid.pentominoes = this.pentominoes;
+    copyGrid.playerPentominoes = this.playerPentominoes;
+    copyGrid.ghostPentomino = this.ghostPentomino;
+    copyGrid.stars = this.stars;
+    copyGrid.points = this.points;
+    copyGrid.blocks = this.blocks;
+    return copyGrid;
+  };
+
 
   public placePentomino(
     pentomino: Pentomino,

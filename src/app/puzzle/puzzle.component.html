@@ -6,7 +6,7 @@
 
     </mat-grid-tile>
     <mat-grid-tile rowspan="8">
-        <puzzle-display [grid]="puzzle" [showSolution]="solutionVisible" [currentlyDragging]="currentlyDraggingPentomino" [switch]="switch"></puzzle-display>
+        <puzzle-display [(grid)]="puzzle" [showSolution]="solutionVisible" [currentlyDragging]="currentlyDraggingPentomino" [switch]="switch"></puzzle-display>
     </mat-grid-tile>
         
     <mat-grid-tile rowspan="3">
@@ -54,7 +54,9 @@
     <div class="example-list">
         @for (pentomino of puzzle.playerPentominoes; track pentomino) {
             
-                <pentomino-display [pentomino]="pentomino" [dndDraggable]="pentomino" dndEffectAllowed="all" (dndDrag)="onDragStart($event, pentomino)" (dndMoved)="resetSwitch()"  ></pentomino-display>
+                <pentomino-display [pentomino]="pentomino" [dndDraggable]="pentomino" dndEffectAllowed="all" (dndDrag)="onDragStart($event, pentomino)" (dndMoved)="resetSwitch()"  >
+                    <div dndDragImageRef>★</div>
+                </pentomino-display>
                 
         }
     </div>

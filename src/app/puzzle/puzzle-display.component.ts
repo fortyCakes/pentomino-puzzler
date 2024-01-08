@@ -1,4 +1,4 @@
-import { ApplicationRef, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, NgZone, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Grid, GridLocation } from './grid';
 import { Pentomino } from './pentomino';
 import { PentominoLibrary } from './pentomino-library';
@@ -19,14 +19,21 @@ export interface Tile {
 })
 export class PuzzleDisplayComponent implements OnChanges {
 
-  constructor(private cdr: ApplicationRef) {}
+  constructor(private cdr: ApplicationRef, private zone:NgZone) {}
 
   @Input() grid: Grid = new Grid(0, 0);
+  @Output() gridChange = new EventEmitter<Grid>();
   @Input() showSolution: boolean = false;
   @Input() currentlyDragging: Pentomino | undefined;
   @Input() switch = false;
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.updateTiles();
+  }
+
+  public tiles: Tile[] = new Array<Tile>;
+
+  private updateTiles() {
     var returnedTiles = new Array<Tile>();
 
     for (var y = 0; y < this.grid.height; y++) {
@@ -35,10 +42,9 @@ export class PuzzleDisplayComponent implements OnChanges {
         var text: string;
         var playerPentomino = this.grid.playerPentominoes.find(p => p.containsLocation(loc));
         if (this.grid.ghostPentomino && this.grid.ghostPentomino?.containsLocation(loc)) {
-          text = "~"
+          text = "~";
         }
-        else if (playerPentomino && !this.showSolution)
-        {
+        else if (playerPentomino && !this.showSolution) {
           text = playerPentomino.name;
         }
         else {
@@ -47,18 +53,17 @@ export class PuzzleDisplayComponent implements OnChanges {
         returnedTiles.push({ color: PentominoLibrary.getColorFromText(text), text: text, x: x, y: y });
       }
     }
-
     this.tiles = returnedTiles;
+    console.log("tile update:" + this.tiles[0].text);
+    
   }
-
-  public tiles: Tile[] = new Array<Tile>;
 
   public get pentominoes(): Pentomino[] {
     return this.grid.pentominoes;
   }
 
   onDragover($event: DragEvent, x: number, y: number) {
-    /* var ghostPentomino = PentominoLibrary.i();
+    var ghostPentomino = PentominoLibrary.i();
     ghostPentomino.pentominoBlocks = new Array<GridLocation>();
 
     // Make a copy of the currently dragging to ensure rotation is the same
@@ -71,17 +76,32 @@ export class PuzzleDisplayComponent implements OnChanges {
     ghostPentomino.xOffset = x - minX;
     ghostPentomino.yOffset = y - minY;
 
-    this.grid.ghostPentomino = ghostPentomino; */
+    var newGrid = this.grid.copy();
+    newGrid.ghostPentomino = ghostPentomino;
+    this.grid = newGrid;
+    this.updateTiles();
+    this.gridChange.emit(this.grid);
+    console.log("grid update");
+    this.cdr.tick();
   }
+
   onDrop($event: DndDropEvent, x:number, y:number) {
     var loc = new GridLocation(x,y);
     var playerPentomino = this.grid.playerPentominoes.find(p => p.name == this.currentlyDragging?.name);
-    console.log(playerPentomino);
+    
     if (playerPentomino) {
       var minX = Math.min(...playerPentomino.pentominoBlocks.map(pb=>pb.x));
       var minY = Math.min(...playerPentomino.pentominoBlocks.map(pb=>pb.y));
       playerPentomino.xOffset = x - minX;
       playerPentomino.yOffset = y - minY;
     }
+
+    var newGrid = this.grid.copy();
+    newGrid.ghostPentomino = undefined;
+    this.grid = newGrid;
+    this.updateTiles();
+    this.gridChange.emit(this.grid);
+    console.log("grid update");
+    this.cdr.tick();
   }
 }
